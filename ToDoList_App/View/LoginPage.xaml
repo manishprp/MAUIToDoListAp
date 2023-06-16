@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ToDoList_App.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:ToDoList_App"
+    Title="LoginPage">
+    <ContentPage.BindingContext>
+        <viewModel:LoginViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style x:Key="RoundedBorderStyle" TargetType="Border">
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BackgroundColor" Value="#ECE4E4" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+        </Style>
+        <Style x:Key="RoundedEntryStyle" TargetType="Entry">
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="PlaceholderColor" Value="Grey" />
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
+        <Style x:Key="PurpleButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Purple" />
+            <Setter Property="CornerRadius" Value="30" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="HeightRequest" Value="60" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="WidthRequest" Value="-1" />
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout Padding="16">
+        <VerticalStackLayout Spacing="20" VerticalOptions="CenterAndExpand">
+            <Label
+                FontAttributes="Bold"
+                FontSize="40"
+                HorizontalOptions="Center"
+                Text="Login"
+                TextColor="Purple" />
+            <Border Style="{StaticResource RoundedBorderStyle}">
+                <Entry
+                    Placeholder="Name"
+                    Style="{StaticResource RoundedEntryStyle}"
+                    Text="{Binding Name}" />
+            </Border>
+            <Border Style="{StaticResource RoundedBorderStyle}">
+                <Entry
+                    IsPassword="True"
+                    Placeholder="Password"
+                    Style="{StaticResource RoundedEntryStyle}"
+                    Text="{Binding Password}" />
+            </Border>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                <Button
+                    Grid.Column="0"
+                    Command="{Binding ResetCommand}"
+                    Style="{StaticResource PurpleButtonStyle}"
+                    Text="Reset" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding LoginCommand}"
+                    Style="{StaticResource PurpleButtonStyle}"
+                    Text="Login" />
+            </Grid>
+        </VerticalStackLayout>
+        <Label FontSize="Medium" HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Don't have an account ?" TextColor="Black" />
+                    <Span
+                        FontAttributes="Bold"
+                        Text=" Register"
+                        TextColor="Purple">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+</ContentPage>

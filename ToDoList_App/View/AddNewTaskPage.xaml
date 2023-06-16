@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopup:PopupPage
+    x:Class="ToDoList_App.AddNewTaskPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:anim="clr-namespace:Mopups.Animations;assembly=Mopups"
+    xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:viewModel="clr-namespace:ToDoList_App"
+    x:DataType="viewModel:AddNewTaskViewModelb"
+    BackgroundColor="#80000000">
+    <mopup:PopupPage.Animation>
+        <anim:ScaleAnimation
+            DurationIn="200"
+            DurationOut="200"
+            EasingIn="Linear"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="0.5"
+            ScaleOut="0.5" />
+    </mopup:PopupPage.Animation>
+    <Border
+        Margin="10"
+        Padding="16"
+        StrokeShape="RoundRectangle 30"
+        StrokeThickness="0"
+        VerticalOptions="CenterAndExpand">
+        <StackLayout>
+            <VerticalStackLayout
+                Padding="10"
+                Spacing="15"
+                VerticalOptions="CenterAndExpand">
+                <Entry
+                    IsEnabled="{Binding IsDataEnabled}"
+                    Placeholder="Task Name"
+                    Text="{Binding TaskName}"
+                    TextColor="Black" />
+                <Editor
+                    HeightRequest="50"
+                    IsEnabled="{Binding IsDataEnabled}"
+                    Placeholder="Description"
+                    Text="{Binding TaskDescription}"
+                    TextColor="Black" />
+                <DatePicker Date="{Binding TaskDate}" IsEnabled="{Binding IsDataEnabled}" />
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*">
+                <Button
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Command="{Binding AddNewTaskCommand}"
+                    CornerRadius="50"
+                    HeightRequest="60"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsUpdateVisible}"
+                    Text="{Binding Buttontitle}"
+                    TextColor="Black"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="-1" />
+                <Button
+                    Grid.Column="0"
+                    Command="{Binding EditTaskCommand}"
+                    CornerRadius="50"
+                    HeightRequest="60"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsEditVisible}"
+                    Text="Edit"
+                    TextColor="Black"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="-1" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding DeleteTaskCommand}"
+                    CornerRadius="50"
+                    HeightRequest="60"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsEditVisible}"
+                    Text="Delete"
+                    TextColor="Black"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="-1" />
+            </Grid>
+        </StackLayout>
+    </Border>
+</mopup:PopupPage>

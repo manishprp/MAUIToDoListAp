@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Style x:Key="RoundedBorderStyle" TargetType="Border">
+        <Setter Property="HeightRequest" Value="60" />
+        <Setter Property="BackgroundColor" Value="#ECE4E4" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 15" />
+    </Style>
+    <Style x:Key="RoundedEntryStyle" TargetType="Entry">
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="PlaceholderColor" Value="Grey" />
+        <Setter Property="TextColor" Value="Black" />
+    </Style>
+    <Style x:Key="PurpleButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Purple" />
+        <Setter Property="CornerRadius" Value="30" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="HeightRequest" Value="60" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="WidthRequest" Value="-1" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ToDoList_App.TodoMainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:ToDoList_App"
+    x:Name="this"
+    Title="TodoMainPage">
+
+    <NavigationPage.TitleView>
+        <StackLayout Padding="10" />
+    </NavigationPage.TitleView>
+    <StackLayout Padding="10" Spacing="5">
+        <CollectionView
+            x:Name="CollectionView"
+            ItemsSource="{Binding Tasks}"
+            VerticalOptions="FillAndExpand">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModel:TaskDataModel">
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem BackgroundColor="LightBlue" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+
+                        <Border
+                            BackgroundColor="LightBlue"
+                            HeightRequest="100"
+                            StrokeShape="RoundRectangle 25,0,0,25"
+                            StrokeThickness="0"
+                            WidthRequest="-1">
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="Black"
+                                    Opacity="0.5"
+                                    Radius="50"
+                                    Offset="5,5" />
+                            </Border.Shadow>
+                            <Grid ColumnDefinitions="15*,70*,15*">
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{Binding ImageSource}"
+                                    VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference CollectionView}, Path=BindingContext.CheckCommand}" CommandParameter="{Binding .}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding TaskName}" />
+                                    <Label FontSize="Medium" Text="{Binding TaskDescription}" />
+                                </VerticalStackLayout>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference CollectionView}, Path=BindingContext.ViewTaskCommand}" CommandParameter="{Binding .}" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Border>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button
+            Command="{Binding AddTaskCommand}"
+            CornerRadius="50"
+            HeightRequest="60"
+            HorizontalOptions="FillAndExpand"
+            Text="New Task"
+            TextColor="Black"
+            VerticalOptions="End"
+            WidthRequest="-1" />
+    </StackLayout>
+</ContentPage>
